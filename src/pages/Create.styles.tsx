@@ -4,7 +4,19 @@ export const Section = styled.section`
   width: 100vw;
   height: 82vh;
   background-color: #f8f8f8;
-  .description {
+
+  .filter {
+    font-size: 1.5vw;
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+  .filter > img {
+    width: 2.5vw;
+  }
+  .steps {
     width: 100%;
     height: auto;
     display: flex;

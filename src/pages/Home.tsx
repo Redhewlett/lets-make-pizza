@@ -1,8 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+//style
+import { Section } from './Home.styles'
+//components
 import Nav from '../components/Nav'
 import Gutter from '../components/Gutter'
 import Card from '../components/Card'
-import { Section } from './Home.styles'
+import Button from '../components/Button'
+//images
 const dough = require('../assets/images/photo/dough-skyler.jpg')
 const sauce = require('../assets/images/photo/sauce-roman.jpg')
 const toppings = require('../assets/images/photo/toppings-engin.jpg')
@@ -44,11 +49,23 @@ const steps: StepArray = [
   }
 ]
 
-export default function Home() {
+export default function Home(): React.ReactElement {
+  let navigate = useNavigate()
+  const getStarted = () => {
+    navigate('./create', { replace: true })
+  }
+
   return (
     <>
-      <Nav />
-      <Gutter />
+      <header>
+        <Nav />
+        <Gutter>
+          <h2>
+            Welcome to your <strong>Pizza</strong> companion app
+          </h2>
+          <p>The app that lets you create your pizza from scratch and gives you informations about it</p>
+        </Gutter>
+      </header>
       <Section>
         <h3>How it works</h3>
         <div className='description'>
@@ -59,6 +76,9 @@ export default function Home() {
               <p className='stepCount'>{step.stepNbr}</p>
             </Card>
           ))}
+        </div>
+        <div className='buttonWrapper'>
+          <Button onClick={getStarted}>Get started!</Button>
         </div>
       </Section>
     </>

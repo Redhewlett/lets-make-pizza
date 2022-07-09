@@ -1,14 +1,11 @@
 import { GutterBar } from './Gutter.styles'
 
-const Gutter: React.FC = () => {
-  return (
-    <GutterBar>
-      <h2>
-        Welcome to your <strong>Pizza</strong> companion app
-      </h2>
-      <p>The app that lets you create your pizza from scratch and gives you informations about it</p>
-    </GutterBar>
-  )
+interface Props {
+  children: JSX.Element[] | JSX.Element
+}
+
+const Gutter: React.FC<Props> = ({ children }) => {
+  return <GutterBar>{children}</GutterBar>
 }
 
 export default Gutter

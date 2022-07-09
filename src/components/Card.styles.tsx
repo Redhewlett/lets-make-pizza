@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-export const WhiteCard = styled.div`
-  width: 20vw;
+export const WhiteCard = styled.div.attrs((props) => ({ className: props.className }))`
+  width: 17vw;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -17,6 +17,7 @@ export const WhiteCard = styled.div`
     border-top-left-radius: 20px;
   }
   .step {
+    margin-top: 0.5em;
     font-size: 1.2vw;
   }
   .stepCount {
@@ -29,5 +30,6 @@ export const WhiteCard = styled.div`
     align-items: center;
     border-radius: 50%;
     background-color: #57b583;
+    color: white;
   }
 `
