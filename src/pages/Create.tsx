@@ -4,6 +4,11 @@ import { Section } from './Create.styles'
 //components
 import Nav from '../components/Nav'
 import Gutter from '../components/Gutter'
+import Card from '../components/Card'
+//ingrdients-data arrays
+import { Dough } from '../assets/pizza-elements/dough'
+import { Sauces } from '../assets/pizza-elements/sauces'
+import { Toppings } from '../assets/pizza-elements/toppings'
 //images
 const banPig = require('../assets/images/filters/ban-pig.png')
 const vegan = require('../assets/images/filters/vegan.png')
@@ -15,7 +20,7 @@ export default function Create(): React.ReactElement {
         <Nav />
         <Gutter>
           <h2>
-            Create you own <strong>pizza</strong>
+            Create your own <strong>pizza</strong>
           </h2>
           <p>get calory recap' and recipe at the end</p>
         </Gutter>
@@ -25,6 +30,18 @@ export default function Create(): React.ReactElement {
           <p>Filters</p>
           <img src={banPig} alt='banPig-icon' />
           <img src={vegan} alt='vegan-icon' />
+        </div>
+
+        <div className='steps'>
+          <Card>
+            <div className='stepElements'>
+              {Dough.map((dough) => (
+                <img src={dough.imgUrl} alt={dough.name} />
+              ))}
+            </div>
+            <p className='step'>Select your pizza dough</p>
+            <p className='stepCount'>1</p>
+          </Card>
         </div>
       </Section>
     </>

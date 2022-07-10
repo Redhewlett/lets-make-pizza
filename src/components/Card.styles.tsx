@@ -32,4 +32,16 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
     background-color: #57b583;
     color: white;
   }
+
+  .stepElements {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+  }
+  .stepElements > img {
+    width: 6vw;
+    height: 6vw;
+  }
 `
