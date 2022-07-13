@@ -20,12 +20,12 @@ const Tomatos = require('../images/toppings/tomatos.png')
 const Onions = require('../images/toppings/onion.png')
 const RedOnions = require('../images/toppings/red-onion.png')
 const Honey = require('../images/toppings/honey.png')
-const Mushrooms = require('../images/toppings/mushrooms.png')
+const Mushrooms = require('../images/toppings/mushroom.png')
 const Basil = require('../images/toppings/basil.png')
 const Garlic = require('../images/toppings/garlic.png')
 const bOlive = require('../images/toppings/olive.png')
-const PineApple = require('../images/toppings/Pineapple.png')
-const ChilliPepper = require('../images/toppings/Chilli-pepper.png')
+const PineApple = require('../images/toppings/pineapple.png')
+const ChilliPepper = require('../images/toppings/chilli-pepper.png')
 //types
 type toppingsObject = {
   id: string

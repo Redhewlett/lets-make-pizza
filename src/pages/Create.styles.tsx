@@ -6,15 +6,15 @@ export const Section = styled.section`
   background-color: #f8f8f8;
 
   .filter {
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     width: 100%;
-    padding: 1em;
+    padding: 1em 1em 1em 3em;
     display: flex;
     align-items: center;
     gap: 1em;
   }
   .filter > img {
-    width: 2.5vw;
+    width: 2vw;
   }
   .steps {
     width: 100%;

@@ -17,7 +17,7 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
     border-top-left-radius: 20px;
   }
   .step {
-    margin-top: 0.5em;
+    margin-top: 2em;
     font-size: 1.2vw;
   }
   .stepCount {
@@ -35,13 +35,24 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
 
   .stepElements {
     width: 100%;
+    height: 42vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2em;
+    flex-wrap: wrap;
+    gap: 0em 1em;
   }
-  .stepElements > img {
+
+  .stepElements div > img {
     width: 6vw;
     height: 6vw;
+  }
+
+  .toppings div > img {
+    width: 3vw;
+    height: 3vw;
+  }
+  .toppings {
+    padding: 1em;
   }
 `

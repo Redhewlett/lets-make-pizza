@@ -9,6 +9,7 @@ type sauceObject = {
   imgUrl: string
   recipe?: string
   quantity?: string
+  vegan: boolean
 }
 type sauceArray = sauceObject[]
 
@@ -16,16 +17,19 @@ export const Sauces: sauceArray = [
   {
     id: 'tms',
     name: 'Tomato sauce',
-    imgUrl: tomatoS
+    imgUrl: tomatoS,
+    vegan: true
   },
   {
     id: 'bbq',
     name: 'Barbecue sauce',
-    imgUrl: bbq
+    imgUrl: bbq,
+    vegan: true
   },
   {
     id: 'sc',
     name: 'Sour Cream',
-    imgUrl: sourCream
+    imgUrl: sourCream,
+    vegan: false
   }
 ]
