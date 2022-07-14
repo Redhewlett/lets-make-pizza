@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const WhiteCard = styled.div.attrs((props) => ({ className: props.className }))`
-  width: 17vw;
+  width: 19vw;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -9,6 +9,7 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
   align-items: center;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
+  background-color: white;
   img {
     width: 100%;
     height: 40vh;
@@ -40,12 +41,17 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 0em 1em;
+    gap: 0em 1.5em;
   }
 
-  .stepElements div > img {
+  .stepElements img {
     width: 6vw;
     height: 6vw;
+  }
+
+  .stepElements div:hover {
+    transform: translateY(-0.4em);
+    transition: all ease-in-out 250ms;
   }
 
   .toppings div > img {
@@ -54,5 +60,12 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
   }
   .toppings {
     padding: 1em;
+  }
+
+  .selected {
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50px;
+    background-color: #d9d9d9;
   }
 `

@@ -14,12 +14,12 @@ type doughArray = doughObject[]
 export const Dough: doughArray = [
   {
     id: 'itd',
-    name: 'Italian dough',
+    name: 'Italian',
     imgUrl: italian
   },
   {
     id: 'nyd',
-    name: 'New-York style dough',
+    name: 'New-York',
     imgUrl: newYork
   }
 ]
