@@ -16,19 +16,19 @@ type sauceArray = sauceObject[]
 export const Sauces: sauceArray = [
   {
     id: 'tms',
-    name: 'Tomato sauce',
+    name: 'Tomato-sauce',
     imgUrl: tomatoS,
     vegan: true
   },
   {
     id: 'bbq',
-    name: 'Barbecue sauce',
+    name: 'Barbecue-sauce',
     imgUrl: bbq,
     vegan: true
   },
   {
     id: 'sc',
-    name: 'Sour Cream',
+    name: 'Sour-Cream',
     imgUrl: sourCream,
     vegan: false
   }

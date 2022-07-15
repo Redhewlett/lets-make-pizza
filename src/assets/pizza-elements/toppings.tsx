@@ -46,8 +46,14 @@ export const Toppings: toppingsArray = [
     vegan: false
   },
   {
+    id: 'vc',
+    name: 'Vegan-cheese',
+    imgUrl: veganCheese,
+    vegan: true
+  },
+  {
     id: 'gcs',
-    name: 'Goat cheese',
+    name: 'Goat-cheese',
     imgUrl: goatCheese,
     vegan: false
   },
@@ -56,12 +62,6 @@ export const Toppings: toppingsArray = [
     name: 'Mozzarella',
     imgUrl: Mozzarella,
     vegan: false
-  },
-  {
-    id: 'vc',
-    name: 'Vegan cheese',
-    imgUrl: veganCheese,
-    vegan: true
   },
   {
     id: 'bcn',
@@ -86,7 +86,7 @@ export const Toppings: toppingsArray = [
   },
   {
     id: 'bf',
-    name: 'Ground beef',
+    name: 'Ground-beef',
     imgUrl: Beef,
     vegan: false,
     pig: false
@@ -149,7 +149,7 @@ export const Toppings: toppingsArray = [
   },
   {
     id: 'bpp',
-    name: 'Bell Pepper',
+    name: 'Bell-Pepper',
     imgUrl: BellPepper,
     vegan: true,
     pig: false
@@ -170,7 +170,7 @@ export const Toppings: toppingsArray = [
   },
   {
     id: 'roni',
-    name: 'Red onions',
+    name: 'Red-onions',
     imgUrl: RedOnions,
     vegan: true,
     pig: false
@@ -219,7 +219,7 @@ export const Toppings: toppingsArray = [
   },
   {
     id: 'chpp',
-    name: 'Chilli Pepper',
+    name: 'Chilli-Pepper',
     imgUrl: ChilliPepper,
     vegan: true,
     pig: false
