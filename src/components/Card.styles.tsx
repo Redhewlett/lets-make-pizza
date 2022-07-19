@@ -20,6 +20,10 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
   .step {
     margin-top: 2em;
     font-size: 1.2vw;
+    text-align: center;
+  }
+  .topping-list {
+    font-size: 1vw;
   }
   .stepCount {
     width: 3em;
@@ -33,7 +37,6 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
     background-color: #57b583;
     color: white;
   }
-
   .stepElements {
     width: 100%;
     height: 42vh;
@@ -43,17 +46,14 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
     flex-wrap: wrap;
     gap: 0em 1.5em;
   }
-
   .stepElements img {
     width: 6vw;
     height: 6vw;
   }
-
   .stepElements div:hover {
     transform: translateY(-0.4em);
     transition: all ease-in-out 250ms;
   }
-
   .toppings div > img {
     width: 3vw;
     height: 3vw;
@@ -61,7 +61,6 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
   .toppings {
     padding: 1em;
   }
-
   .selected {
     width: 3vw;
     height: 3vw;

@@ -15,29 +15,31 @@ import { Toppings } from '../assets/pizza-elements/toppings'
 const banPig = require('../assets/images/filters/ban-pig.png')
 const vegan = require('../assets/images/filters/vegan.png')
 
+let nbrOfToppings = 0
+let toppingList: string[] = []
+
 export default function Create(): React.ReactElement {
-  const [stepDough, setStepDough] = useState<string | null>('Select your pizza dough style')
-  const [stepSauce, setStepSauce] = useState<string | null>('Select your sauce')
+  const [stepDough, setStepDough] = useState<string>('Select your pizza dough style')
+  const [stepSauce, setStepSauce] = useState<string>('Select your sauce')
   const [stepToppings, setStepToppings] = useState<string[]>(['Choose your toppings'])
 
   const topppingsLimit: number = 5
 
-  function toppingsArray(clickedItem: string | null) {
-    if (stepToppings.length === 0) {
-      setStepToppings(clickedItem)
-      console.log(stepToppings.length, stepToppings)
-    } else if (stepToppings.length > 0 && stepToppings.length !== topppingsLimit) {
-      setStepToppings(clickedItem)
-      console.log(stepToppings.length, stepToppings)
-    } else if (stepToppings.length === topppingsLimit) {
-      setStepToppings(stepToppings)
+  function chooseToppings(clickedItem: string) {
+    let selectedTopping: string = clickedItem!
+    if (nbrOfToppings !== topppingsLimit) {
+      toppingList.push(selectedTopping)
+      nbrOfToppings++
+    } else if (nbrOfToppings === topppingsLimit) {
+      setStepToppings(toppingList)
     }
   }
 
   function handleSelection(e: React.MouseEvent<HTMLImageElement>) {
     //get the name of the clicked element --> e.currentTarget.getAttribute('data-category')
-    let clickedCategory: string | null = e.currentTarget.getAttribute('data-category')
-    let clickedItem: string | null = e.currentTarget.getAttribute('data-name')
+    //non-null assertion with "!"
+    let clickedCategory: string = e.currentTarget.getAttribute('data-category')!
+    let clickedItem: string = e.currentTarget.getAttribute('data-name')!
 
     if (clickedCategory === 'dough') {
       setStepDough(clickedItem + ' style')
@@ -46,14 +48,14 @@ export default function Create(): React.ReactElement {
     if (clickedCategory === 'sauce') {
       setStepSauce(clickedItem)
     }
-
     if (clickedCategory === 'toppings') {
-      toppingsArray(clickedItem)
+      chooseToppings(clickedItem)
     }
   }
-  //the final pizza
+  //the final pizza saved in local storage then redirect to the pizza page
   function handleConfirm(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    console.log([stepDough, stepSauce, stepToppings])
+    let pizza: string = JSON.stringify({ dough: stepDough, sauce: stepSauce, toppings: stepToppings })
+    localStorage.setItem('newPizza', pizza)
   }
   return (
     <>
@@ -104,7 +106,7 @@ export default function Create(): React.ReactElement {
                 </Tooltip>
               ))}
             </div>
-            <p className='step'>{stepToppings.map((topping) => topping + ' ')}</p>
+            <p className='step topping-list'>{stepToppings.map((topping) => topping + ' ')}</p>
             <p className='stepCount'>3</p>
           </Card>
         </div>
