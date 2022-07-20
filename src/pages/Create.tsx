@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Tooltip } from '@mantine/core'
 //style
 import { Section } from './Create.styles'
@@ -7,6 +7,7 @@ import Nav from '../components/Nav'
 import Gutter from '../components/Gutter'
 import Card from '../components/Card'
 import Button from '../components/Button'
+import { ModalBox } from '../components/ModalBox'
 //ingrdients-data arrays
 import { Dough } from '../assets/pizza-elements/dough'
 import { Sauces } from '../assets/pizza-elements/sauces'
@@ -15,22 +16,29 @@ import { Toppings } from '../assets/pizza-elements/toppings'
 const banPig = require('../assets/images/filters/ban-pig.png')
 const vegan = require('../assets/images/filters/vegan.png')
 
-let nbrOfToppings = 0
 let toppingList: string[] = []
+let nbrOfToppings = 0
 
 export default function Create(): React.ReactElement {
   const [stepDough, setStepDough] = useState<string>('Select your pizza dough style')
   const [stepSauce, setStepSauce] = useState<string>('Select your sauce')
   const [stepToppings, setStepToppings] = useState<string[]>(['Choose your toppings'])
+  const [openModal, setOpenModal] = useState<boolean>(false)
 
   const topppingsLimit: number = 5
 
   function chooseToppings(clickedItem: string) {
     let selectedTopping: string = clickedItem!
-    if (nbrOfToppings !== topppingsLimit) {
+
+    if (nbrOfToppings === 0) {
       toppingList.push(selectedTopping)
       nbrOfToppings++
-    } else if (nbrOfToppings === topppingsLimit) {
+    } else if (nbrOfToppings > 0 && nbrOfToppings < topppingsLimit) {
+      toppingList.push(selectedTopping)
+      nbrOfToppings++
+    }
+
+    if (nbrOfToppings === 5) {
       setStepToppings(toppingList)
     }
   }
@@ -52,10 +60,28 @@ export default function Create(): React.ReactElement {
       chooseToppings(clickedItem)
     }
   }
+  //check if a pizza was made
+  useEffect(() => {
+    let prevPizza: string = localStorage.getItem('newPizza') ? JSON.parse(localStorage.getItem('newPizza')!) : 'no pizza yet'
+    if (prevPizza !== 'no pizza yet') {
+      console.log(prevPizza)
+    }
+  }, [])
+  //close modal
+  function closeModal() {
+    setOpenModal(false)
+  }
+
   //the final pizza saved in local storage then redirect to the pizza page
   function handleConfirm(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    let pizza: string = JSON.stringify({ dough: stepDough, sauce: stepSauce, toppings: stepToppings })
-    localStorage.setItem('newPizza', pizza)
+    if (stepDough === 'Select your pizza dough style' || stepSauce === 'Select your sauce' || nbrOfToppings === 0) {
+      setOpenModal(true)
+      console.log(stepToppings)
+    } else {
+      let pizza: string = JSON.stringify({ dough: stepDough, sauce: stepSauce, toppings: stepToppings })
+      console.log(pizza)
+      // localStorage.setItem('newPizza', pizza)
+    }
   }
   return (
     <>
@@ -69,6 +95,9 @@ export default function Create(): React.ReactElement {
         </Gutter>
       </header>
       <Section>
+        <ModalBox active={openModal} close={closeModal}>
+          <p>Please, complete each step with at least one element, your pizza will taste way better 🤭</p>
+        </ModalBox>
         <div className='filter'>
           <p>Filters</p>
           <img src={banPig} alt='banPig-icon' />
@@ -106,7 +135,11 @@ export default function Create(): React.ReactElement {
                 </Tooltip>
               ))}
             </div>
-            <p className='step topping-list'>{stepToppings.map((topping) => topping + ' ')}</p>
+            <ul className='step topping-list'>
+              {stepToppings.map((topping, index) => (
+                <li key={index}>{topping}</li>
+              ))}
+            </ul>
             <p className='stepCount'>3</p>
           </Card>
         </div>

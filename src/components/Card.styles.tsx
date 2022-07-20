@@ -24,7 +24,16 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
   }
   .topping-list {
     font-size: 1vw;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
   }
+
   .stepCount {
     width: 3em;
     height: 3em;
