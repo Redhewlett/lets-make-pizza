@@ -21,17 +21,23 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
     margin-top: 2em;
     font-size: 1.2vw;
     text-align: center;
+    font-family: 'Merriweather', trebuchet;
+    background-color: #57b583;
+    font-weight: bold;
+  }
+  .home-step {
+    margin-top: 1em;
   }
   .topping-list {
-    font-size: 1vw;
     padding: 0;
     width: 100%;
+    font-size: 0.9vw;
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 0.5em;
+    flex-wrap: wrap;
+    gap: 0.4em;
   }
 
   .stepCount {
@@ -69,7 +75,11 @@ export const WhiteCard = styled.div.attrs((props) => ({ className: props.classNa
   }
   .toppings {
     padding: 1em;
+    /* overflow: auto; */
   }
+  /* .toppings::-webkit-scrollbar {
+    display: none;
+  } */
   .selected {
     width: 3vw;
     height: 3vw;

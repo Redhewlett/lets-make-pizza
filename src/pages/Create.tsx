@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Tooltip } from '@mantine/core'
+import { PizzaContext } from '../context/pizzaContext'
 //style
 import { Section } from './Create.styles'
 //components
@@ -16,30 +17,32 @@ import { Toppings } from '../assets/pizza-elements/toppings'
 const banPig = require('../assets/images/filters/ban-pig.png')
 const vegan = require('../assets/images/filters/vegan.png')
 
-let toppingList: string[] = []
 let nbrOfToppings = 0
 
 export default function Create(): React.ReactElement {
-  const [stepDough, setStepDough] = useState<string>('Select your pizza dough style')
-  const [stepSauce, setStepSauce] = useState<string>('Select your sauce')
-  const [stepToppings, setStepToppings] = useState<string[]>(['Choose your toppings'])
+  const [pizza, setPizza] = useContext(PizzaContext)
   const [openModal, setOpenModal] = useState<boolean>(false)
 
   const topppingsLimit: number = 5
 
   function chooseToppings(clickedItem: string) {
-    let selectedTopping: string = clickedItem!
-
+    const oldPizza = pizza
     if (nbrOfToppings === 0) {
-      toppingList.push(selectedTopping)
+      let newPizza = {
+        dough: oldPizza.dough,
+        sauce: oldPizza.sauce,
+        toppings: [clickedItem]
+      }
+      setPizza(newPizza)
       nbrOfToppings++
     } else if (nbrOfToppings > 0 && nbrOfToppings < topppingsLimit) {
-      toppingList.push(selectedTopping)
+      let newPizza = {
+        dough: oldPizza.dough,
+        sauce: oldPizza.sauce,
+        toppings: [...oldPizza.toppings, clickedItem]
+      }
+      setPizza(newPizza)
       nbrOfToppings++
-    }
-
-    if (nbrOfToppings === 5) {
-      setStepToppings(toppingList)
     }
   }
 
@@ -49,12 +52,24 @@ export default function Create(): React.ReactElement {
     let clickedCategory: string = e.currentTarget.getAttribute('data-category')!
     let clickedItem: string = e.currentTarget.getAttribute('data-name')!
 
+    const oldPizza = pizza
+
     if (clickedCategory === 'dough') {
-      setStepDough(clickedItem + ' style')
+      let newPizza = {
+        dough: clickedItem,
+        sauce: oldPizza.sauce,
+        toppings: oldPizza.toppings
+      }
+      setPizza(newPizza)
     }
 
     if (clickedCategory === 'sauce') {
-      setStepSauce(clickedItem)
+      let newPizza = {
+        dough: oldPizza.dough,
+        sauce: clickedItem,
+        toppings: oldPizza.toppings
+      }
+      setPizza(newPizza)
     }
     if (clickedCategory === 'toppings') {
       chooseToppings(clickedItem)
@@ -74,14 +89,15 @@ export default function Create(): React.ReactElement {
 
   //the final pizza saved in local storage then redirect to the pizza page
   function handleConfirm(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    if (stepDough === 'Select your pizza dough style' || stepSauce === 'Select your sauce' || nbrOfToppings === 0) {
-      setOpenModal(true)
-      console.log(stepToppings)
-    } else {
-      let pizza: string = JSON.stringify({ dough: stepDough, sauce: stepSauce, toppings: stepToppings })
-      console.log(pizza)
-      // localStorage.setItem('newPizza', pizza)
-    }
+    // if (stepDough === 'Select your pizza dough style' || stepSauce === 'Select your sauce' || nbrOfToppings === 0) {
+    //   setOpenModal(true)
+    //   console.log(stepToppings)
+    // } else {
+    //   let pizza: string = JSON.stringify({ dough: stepDough, sauce: stepSauce, toppings: stepToppings })
+    //   console.log(pizza)
+    //   // localStorage.setItem('newPizza', pizza)
+    // }
+    console.log(pizza)
   }
   return (
     <>
@@ -113,7 +129,7 @@ export default function Create(): React.ReactElement {
                 </Tooltip>
               ))}
             </div>
-            <p className='step'>{stepDough}</p>
+            <p className='step'>{pizza.dough}</p>
             <p className='stepCount'>1</p>
           </Card>
           <Card>
@@ -124,19 +140,29 @@ export default function Create(): React.ReactElement {
                 </Tooltip>
               ))}
             </div>
-            <p className='step'>{stepSauce}</p>
+            <p className='step'>{pizza.sauce}</p>
             <p className='stepCount'>2</p>
           </Card>
           <Card>
             <div className='stepElements toppings'>
               {Toppings.map((topping, index) => (
                 <Tooltip key={index} label={topping.name} color='red' radius='md' position='right'>
-                  <img key={index} data-category='toppings' data-name={topping.name} src={topping.imgUrl} alt={topping.name} onClick={handleSelection} />
+                  <img
+                    key={index}
+                    data-category='toppings'
+                    data-vegan={topping.vegan}
+                    data-pig={topping.pig}
+                    data-name={topping.name}
+                    src={topping.imgUrl}
+                    alt={topping.name}
+                    onClick={handleSelection}
+                  />
                 </Tooltip>
               ))}
             </div>
+
             <ul className='step topping-list'>
-              {stepToppings.map((topping, index) => (
+              {pizza.toppings.map((topping: string, index: number) => (
                 <li key={index}>{topping}</li>
               ))}
             </ul>

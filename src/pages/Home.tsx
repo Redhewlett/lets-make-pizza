@@ -72,7 +72,7 @@ export default function Home(): React.ReactElement {
           {steps.map((step, index) => (
             <Card key={index}>
               <img src={step.imgUrl} alt={step.imgAlt} />
-              <p className='step'>{step.text}</p>
+              <p className='step home-step'>{step.text}</p>
               <p className='stepCount'>{step.stepNbr}</p>
             </Card>
           ))}

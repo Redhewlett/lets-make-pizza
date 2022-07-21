@@ -7,6 +7,7 @@ export const RedButton = styled.button`
   border: none;
   border-radius: 50px;
   font-size: 1.7vw;
+  font-family: 'Lobster', cursive;
   color: white;
   background-color: #e64d4d;
   transition: all ease-in-out 250ms;
